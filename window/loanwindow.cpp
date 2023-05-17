@@ -21,13 +21,14 @@ LoanWindow::~LoanWindow() {
 }
 
 void LoanWindow::createContent() {
-    VLayout = new QVBoxLayout(this);
-    HLayout = new QHBoxLayout(this);
-    lbl_user = new QLabel("Users", this);
-    lbl_book = new QLabel("Books", this);
-    cb_user = new QComboBox(this);
-    cb_book = new QComboBox(this);
-    btn_valid = new QPushButton("BORROW", this);
+    p_mainWidget = new QWidget();
+    VLayout = new QVBoxLayout(p_mainWidget);
+    HLayout = new QHBoxLayout(p_mainWidget);
+    lbl_user = new QLabel("Users", p_mainWidget);
+    lbl_book = new QLabel("Books", p_mainWidget);
+    cb_user = new QComboBox(p_mainWidget);
+    cb_book = new QComboBox(p_mainWidget);
+    btn_valid = new QPushButton("BORROW", p_mainWidget);
 
     QList<User> usersList = p_userDao->getAll();
     for (int i = 0; i < usersList.size(); i++) {
@@ -43,12 +44,15 @@ void LoanWindow::createContent() {
     HLayout->addWidget(cb_user);
     HLayout->addWidget(lbl_book);
     HLayout->addWidget(cb_book);
+
     VLayout->addLayout(HLayout);
     VLayout->addWidget(btn_valid);
 
     QObject::connect(btn_valid, &QPushButton::clicked, this, &LoanWindow::bookBorrowed);
+
+    setCentralWidget(p_mainWidget);
 }
 
 void LoanWindow::bookBorrowed() {
-    qDebug() << "Un livre a été emprunté.";
+    qDebug() << "Un livre a ete emprunte.";
 }

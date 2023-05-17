@@ -36,6 +36,7 @@ private:
     UserDAO* p_userDao;
     BookDAO* p_bookDao;
     QMenu* menu;
+    QWidget* p_mainWidget;
     QVBoxLayout* VLayout;
     QHBoxLayout* HLayout;
     QLabel* lbl_user;
